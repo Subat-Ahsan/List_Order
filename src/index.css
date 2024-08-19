@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding:0;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+}
+
+#root {
+  padding: 30px;
+  background-color: rgb(24, 23, 29);
+  height: 100vh;
+}
