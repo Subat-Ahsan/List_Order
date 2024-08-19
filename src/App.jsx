@@ -10,9 +10,9 @@ function App() {
   {num:3, name: "C", subname: "E", id:3},
   {num:4, name: "D", subname: "D", id:4},
   {num:5, name: "E", subname: "", id:5},
-  {num:6, name: "E", subname: "", id:6},
-  {num:8, name: "E", subname: "", id:7},
-  {num:7, name: "E", subname: "", id:8},
+  {num:6, name: "F", subname: "", id:6},
+  {num:7, name: "G", subname: "", id:7},
+  {num:8, name: "H", subname: "", id:8, img:"https://cms.imgworlds.com/assets/e3873302-212a-4c3a-aab3-c3bee866903c.jpg?key=home-gallery"},
   
   ])
 

@@ -10,7 +10,7 @@ body {
 }
 
 #root {
-  padding: 30px;
   background-color: rgb(24, 23, 29);
-  height: 100vh;
+  height: 100%;
+  padding: 10px;
 }

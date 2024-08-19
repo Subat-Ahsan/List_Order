@@ -31,7 +31,9 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
 
   return (
     <div className = {`listItemDiv ${selected.id == id ? `selected` : ""}`} onClick={selectItem}>
-        <div className='ListItemImageContainer'></div>
+        <div className='ListItemImageContainer'>
+          <img src={img}></img>
+        </div>
         
         <div className='ListItemNum'>{num}.</div>
         
@@ -40,7 +42,7 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
             <div className='listItemSubName'>{subname}</div>
         </div>
 
-        <div className='ListItemDoubleContainer'>
+        <div className='ListItemDoubleContainer closer'>
             <div>Move:</div> 
             <div>Swap:</div> 
         </div>
@@ -53,6 +55,13 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
         <div className='ListItemDoubleContainer'>
             <button onClick = {(event) => {event.stopPropagation(); swapItemsCallback(num-1,num-2)}}>
             ^</button>
+            <button onClick={
+              (event) => {if (selected.id){
+                event.stopPropagation()
+                swapItemsCallback(num-1,selected.num-1)
+                setSelectedCallback({})
+              }}
+            }>&#8635;</button>
             <button onClick = {(event) => {event.stopPropagation(); swapItemsCallback(num-1,num)}}>
             v</button>
         </div>
@@ -60,6 +69,7 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
         <div className='ListItemDoubleContainer'>
             <button>&#8594;</button>
             <button>Del</button>
+            <button>...</button>
         </div>
         
     </div>
