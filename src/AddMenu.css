@@ -1,0 +1,59 @@
+.addItemMenu{
+    position: absolute;
+    border-radius: 20px;
+    top: 25%;
+    left: 50%;
+    background-color: rgba(63, 69, 78);
+    transform: translate(-50%, 0%);
+    padding: 20px;
+}
+
+.addItemGrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(5, 1fr);
+    gap: 15px 0px;
+    justify-items: center;
+    font-size: xx-large;
+}
+
+.addMenuCloseButton{
+    background-color: rgb(255, 51, 0);
+    font-size: 24px;
+    color: rgb(247, 247, 247);
+    border-color: rgb(248, 248, 248);
+    border-width: 4px;
+    border: solid;
+    margin-right: 15px;
+}
+
+.addMenuCloseButton:active{
+    background-color: rgb(209, 50, 10);
+    border-color: rgb(241, 197, 197);
+}
+
+.addMenuAddButton{
+    background-color: rgb(0, 101, 216);
+    font-size: 24px;
+    color: rgb(247, 247, 247);
+    border-color: rgb(248, 248, 248);
+    border-width: 4px;
+    border: solid;
+    margin-left: 15px;
+}
+
+.addMenuAddButton:active{
+    background-color: rgb(2, 52, 214);
+    border-color: rgb(194, 241, 255);
+}
+
+.addItemGrid input{
+    font-size: large;
+}
+.grid-column-span-2{
+    grid-column: span 2;
+}
+
+.grid-column-span-3{
+    grid-column: span 3;
+}

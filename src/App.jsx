@@ -1,20 +1,40 @@
-import { useState } from 'react'
-
+import { useState,useRef, useEffect } from 'react'
+import 'react-tooltip/dist/react-tooltip.css'
+import './List.css'
+import './Navbar.css'
+import './AddMenu.css'
 import './App.css'
 import ListContainer from './components/ListContainer'
+import NavBar from './components/NavBar'
+import AddItemMenu from './components/AddItemMenu'
+
+const inital = [{num:1, name: "A", subname: "Fest"},
+  {num:2, name: "B", subname: "Fest"},
+  {num:3, name: "C", subname: "E"},
+  {num:4, name: "D", subname: "D"},
+  {num:5, name: "E", subname: ""},
+  {num:6, name: "F", subname: ""},
+  {num:7, name: "G", subname: "",},
+  {num:8, name: "H", subname: "", img:"test"},
+  {num:9, name: "I", subname: "", img:"test"},
+  {num:10, name: "J", subname: "", img:"test"}]
 
 function App() {
-  const [itemList, setItemList] = useState([
-  {num:1, name: "A", subname: "Fest", id: 1},
-  {num:2, name: "B", subname: "Fest", id:2},
-  {num:3, name: "C", subname: "E", id:3},
-  {num:4, name: "D", subname: "D", id:4},
-  {num:5, name: "E", subname: "", id:5},
-  {num:6, name: "F", subname: "", id:6},
-  {num:7, name: "G", subname: "", id:7},
-  {num:8, name: "H", subname: "", id:8, img:"https://cms.imgworlds.com/assets/e3873302-212a-4c3a-aab3-c3bee866903c.jpg?key=home-gallery"},
-  
-  ])
+  const [itemList, setItemList] = useState([])
+  const items_key_info = useRef({cur_val: 1 , freed: []})
+
+  //handle inital loading
+  useEffect( () =>{
+    let newArr = [];
+    items_key_info.current.cur_val = 1;
+    for (const ob of inital){
+      newArr.push({...ob , id: items_key_info.current.cur_val})
+      items_key_info.current.cur_val+= 1
+    }
+    setItemList(newArr)
+  }, [])
+
+  const [addItemMenuOn, setAddItemMenuOn] = useState(false)
 
   function SwapItems(i1, i2){
     if (i1 == undefined || i2 == undefined){
@@ -51,12 +71,18 @@ function App() {
       return newVal;
     })
   }
+
   return (
-    <>
+    <div className='AppContainer'>
+      {addItemMenuOn && <AddItemMenu closeCallback = {setAddItemMenuOn}
+      itemList = {itemList} itemListCallback = {setItemList}
+      moveItemCallback = {moveItem} key_info = {items_key_info}> </AddItemMenu>}
+      
+      <NavBar addMenuOnCallback = {setAddItemMenuOn}></NavBar>
       <ListContainer itemList = {itemList} swapItemsCallback = {SwapItems} 
       moveItemCallback = {moveItem}
       />
-    </>
+    </div>
   )
 }  
 

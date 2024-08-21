@@ -1,82 +1,17 @@
-.ListContainerDiv{
-    display:flex;
-    flex-direction: column;
+.AppContainer{
     height: 100%;
-    align-items: center;
-    background-color: rgb(32, 42, 61);
-    overflow: scroll;
-    scrollbar-width: none;
-    gap: 2px;
-}
-.ListContainerDiv::-webkit-scrollbar {
-    display: none; /* Hides the scrollbar */
-}
-
-.listItemDiv{
-    display:flex;
-    align-items: center;
-    background-color:rgb(49, 26, 82);
-    border-radius: 20px;
-    width: 90%;
-}
-
-.listGap{
-    height: 15px ;
-    min-height: 15px;
-    width: 10%;
-    font-size: 12px;
-    text-align: center;
-    margin-right: 6%;
-    align-self: flex-end;
-}
-
-.listGap.selected{
-   background-color: rgb(30, 110, 30);
-   opacity: 0.8;
-
-}
-
-
-.listItemDiv.selected{
-    border: 3px;
-    border-style: solid;
-    border-color: green;
-}
-
-.ListItemNum {
-    font-size: 80px;
-}
-
-.ListItemName {
-    font-size: 60px;
-}
-
-
-.listItemSubName{
-    font-size: 20px;
-    margin: 0px 0px 5px 12px;
-    height: 20px;
-}
-
-.ListItemImageContainer {
-    width: 85px;
-    height: 85px;
-    margin: 0px 20px;
-    background: gray
-}
-.ListItemImageContainer img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-.ListItemDoubleContainer {
     display: flex;
-    flex-direction: column;
-    margin: 0px 10px
+    position: relative;
 }
-.ListItemDoubleContainer.closer{
-    margin-right: -6px;
+
+.overlay {
+    position: fixed;   
+    top: 0;
+    left: 0;
+    width: 100vw;      
+    height: 100vh;     
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: 1000;    
 }
-.ListItemDoubleContainer input{
-    width: 50px
-}
+
+

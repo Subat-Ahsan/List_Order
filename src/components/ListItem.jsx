@@ -32,7 +32,14 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
   return (
     <div className = {`listItemDiv ${selected.id == id ? `selected` : ""}`} onClick={selectItem}>
         <div className='ListItemImageContainer'>
-          <img src={img}></img>
+          <img src={img} 
+          onError={(e) => {
+            e.target.src = "src/assets/fallback.jpg"
+          }    
+          }
+          >
+          
+          </img>
         </div>
         
         <div className='ListItemNum'>{num}.</div>
