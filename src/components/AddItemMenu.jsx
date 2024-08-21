@@ -20,7 +20,7 @@ export default function AddItemMenu({closeCallback, itemList, itemListCallback
         let subNameVal = subNameRef.current ? subNameRef.current.value : "";
         let initalPosVal = initalPosRef.current ? initalPosRef.current.value : "";
         let imgUrlVal = imageUrlRef.current ? imageUrlRef.current.value : "";
-        let coverVal = coverRef.current ? coverRef.current.checked : "";
+        let coverVal = coverRef.current ? coverRef.current.checked : false;
         
         if (nameVal == "" && imgUrlVal == ""){
             return;
@@ -28,7 +28,7 @@ export default function AddItemMenu({closeCallback, itemList, itemListCallback
         itemListCallback(oldVal  => {
             let newVal = [...oldVal, {num:oldVal.length + 1, name: nameVal,
                 subname: subNameVal, ...(imgUrlVal && {img:imgUrlVal}),
-                id: key_info.current.cur_val
+                cover: coverVal, id: key_info.current.cur_val
             }]
             key_info.current.cur_val += 1
             return newVal
@@ -56,10 +56,10 @@ export default function AddItemMenu({closeCallback, itemList, itemListCallback
                 <span>Image Fit:</span>
                 <div className='grid-column-span-2'>
                     <span>
-                        <input type="radio" name="image-fit" value = "cover" ref={coverRef} defaultChecked  />Crop &nbsp; &nbsp;
+                        <input type="radio" name="image-fit" value = "cover" ref={coverRef}   />Crop &nbsp; &nbsp;
                     </span>
                     < span>
-                        <input type="radio" name="image-fit" value="fit" />Fit
+                        <input type="radio" name="image-fit" value="fit" defaultChecked />Fit
                     </span>
                 </div>
                 <div className='grid-column-span-3'>

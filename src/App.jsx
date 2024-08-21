@@ -15,9 +15,7 @@ const inital = [{num:1, name: "A", subname: "Fest"},
   {num:5, name: "E", subname: ""},
   {num:6, name: "F", subname: ""},
   {num:7, name: "G", subname: "",},
-  {num:8, name: "H", subname: "", img:"test"},
-  {num:9, name: "I", subname: "", img:"test"},
-  {num:10, name: "J", subname: "", img:"test"}]
+  {num:8, name: "H", subname: "", img:"https://upload.wikimedia.org/wikipedia/en/b/b5/Megumin_anime.png"},]
 
 function App() {
   const [itemList, setItemList] = useState([])

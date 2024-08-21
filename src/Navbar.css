@@ -7,6 +7,10 @@
     padding: 30px 10px;
     gap: 12px;
     overflow: scroll;
+    border-color: #edf88c;
+    border-width: 0px 4px 0px 0px;
+    border-radius: 15px;
+    border-style: solid;
 }
 
 .NavBar::-webkit-scrollbar {

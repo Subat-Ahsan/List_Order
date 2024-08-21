@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
+import { FaArrowUp, FaArrowDown, FaExchangeAlt, FaArrowRight, FaTrash, FaEdit } from 'react-icons/fa';
 
 
 
-export default function ListItem({num, img, name, subname, swapItemsCallback
+export default function ListItem({num, img, name, subname, cover, swapItemsCallback
     , moveItemCallback , selected, setSelectedCallback, id
 }) {
 
+  let cover_style_obj = {"object-fit": (cover ? "cover" : "contain")}
 
   function handleSwapTo(event){
     if (event.key == "Enter"){
@@ -32,13 +34,10 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
   return (
     <div className = {`listItemDiv ${selected.id == id ? `selected` : ""}`} onClick={selectItem}>
         <div className='ListItemImageContainer'>
-          <img src={img} 
+          <img src={img} style={cover_style_obj}
           onError={(e) => {
             e.target.src = "src/assets/fallback.jpg"
-          }    
-          }
-          >
-          
+          }  }>
           </img>
         </div>
         
@@ -49,7 +48,7 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
             <div className='listItemSubName'>{subname}</div>
         </div>
 
-        <div className='ListItemDoubleContainer closer'>
+        <div className='ListItemDoubleContainer closer textContainer'>
             <div>Move:</div> 
             <div>Swap:</div> 
         </div>
@@ -61,22 +60,26 @@ export default function ListItem({num, img, name, subname, swapItemsCallback
 
         <div className='ListItemDoubleContainer'>
             <button onClick = {(event) => {event.stopPropagation(); swapItemsCallback(num-1,num-2)}}>
-            ^</button>
+              <FaArrowUp />
+            </button>
             <button onClick={
               (event) => {if (selected.id){
                 event.stopPropagation()
                 swapItemsCallback(num-1,selected.num-1)
                 setSelectedCallback({})
               }}
-            }>&#8635;</button>
+            }>
+              <FaExchangeAlt />
+            </button>
             <button onClick = {(event) => {event.stopPropagation(); swapItemsCallback(num-1,num)}}>
-            v</button>
+              <FaArrowDown />
+            </button>
         </div>
 
         <div className='ListItemDoubleContainer'>
-            <button>&#8594;</button>
-            <button>Del</button>
-            <button>...</button>
+            <button><FaArrowRight /></button>
+            <button><FaTrash /></button>
+            <button><FaEdit /></button>
         </div>
         
     </div>

@@ -17,8 +17,8 @@ export default function ListContainer({itemList, swapItemsCallback, moveItemCall
         key = {200000 + 0} />
         {itemList.map((item,index)=> (
             
-            [<ListItem key={item.id} num = {item.num} img = {item.img} name = {item.name}
-            subname = {item.subname} swapItemsCallback = {swapItemsCallback}
+            [<ListItem key={item.id} num = {item.num} img = {item.img} cover={item.cover}
+            name = {item.name} subname = {item.subname} swapItemsCallback = {swapItemsCallback}
             moveItemCallback = {moveItemCallback} id = {item.id}
             selected= {selected} setSelectedCallback = {setSelected}
             />,
