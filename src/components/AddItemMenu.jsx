@@ -1,10 +1,7 @@
 
 import React, {useRef} from 'react'
 
-export default function AddItemMenu({closeCallback, itemList, itemListCallback
-    , moveItemCallback, key_info
-}) {
-
+export default function AddItemMenu({closeCallback, addItemCallback}) {
     const nameRef = useRef(null);
     const subNameRef = useRef(null);
     const initalPosRef = useRef(null);
@@ -25,14 +22,7 @@ export default function AddItemMenu({closeCallback, itemList, itemListCallback
         if (nameVal == "" && imgUrlVal == ""){
             return;
         }
-        itemListCallback(oldVal  => {
-            let newVal = [...oldVal, {num:oldVal.length + 1, name: nameVal,
-                subname: subNameVal, ...(imgUrlVal && {img:imgUrlVal}),
-                cover: coverVal, id: key_info.current.cur_val
-            }]
-            key_info.current.cur_val += 1
-            return newVal
-        })
+        addItemCallback(nameVal, subNameVal, imgUrlVal, coverVal);
 
         if (nameRef.current) {nameRef.current.value = '';}
         if (subNameRef.current) {subNameRef.current.value = '';}

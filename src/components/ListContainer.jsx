@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import ListItem from './ListItem'
 import ListGap from './ListGap'
 
-export default function ListContainer({itemList, swapItemsCallback, moveItemCallback}) {
+export default function ListContainer({itemList, swapItemsCallback, moveItemCallback, deleteItemCallback}) {
   
   
   const [selected, setSelected] = useState({})
@@ -19,7 +19,7 @@ export default function ListContainer({itemList, swapItemsCallback, moveItemCall
             
             [<ListItem key={item.id} num = {item.num} img = {item.img} cover={item.cover}
             name = {item.name} subname = {item.subname} swapItemsCallback = {swapItemsCallback}
-            moveItemCallback = {moveItemCallback} id = {item.id}
+            moveItemCallback = {moveItemCallback} id = {item.id} deleteItemCallback = {deleteItemCallback}
             selected= {selected} setSelectedCallback = {setSelected}
             />,
             <ListGap selected={selected} num={index+1} 

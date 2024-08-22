@@ -4,22 +4,26 @@ import { FaArrowUp, FaArrowDown, FaExchangeAlt, FaArrowRight, FaTrash, FaEdit } 
 
 
 export default function ListItem({num, img, name, subname, cover, swapItemsCallback
-    , moveItemCallback , selected, setSelectedCallback, id
+    , moveItemCallback , selected, setSelectedCallback, id, deleteItemCallback
 }) {
 
-  let cover_style_obj = {"object-fit": (cover ? "cover" : "contain")}
+  let cover_style_obj = {"objectFit": (cover ? "cover" : "contain")}
 
   function handleSwapTo(event){
     if (event.key == "Enter"){
-        swapItemsCallback(event.target.value-1, num-1)
+        swapItemsCallback(Number(event.target.value-1), num-1)
         event.target.value = undefined
     }
   }
   function handleMoveTo(event){
     if (event.key == "Enter"){
-        moveItemCallback(num-1, event.target.value-1)
+        moveItemCallback(num-1, Number(event.target.value)-1)
         event.target.value = ""
     }
+  }
+
+  function handleDelete(){
+    deleteItemCallback(num-1);
   }
 
   function selectItem(event){
@@ -78,7 +82,7 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
 
         <div className='ListItemDoubleContainer'>
             <button><FaArrowRight /></button>
-            <button><FaTrash /></button>
+            <button onClick={handleDelete}><FaTrash /></button>
             <button><FaEdit /></button>
         </div>
         
