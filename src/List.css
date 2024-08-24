@@ -4,12 +4,13 @@
     flex-direction: column;
     height: 100%;
     align-items: center;
-    background-color: rgb(27, 27, 29);
+    background-color: rgb(48, 48, 53);
     overflow: scroll;
     scrollbar-width: none;
     gap: 2px;
     flex-grow:1
 }
+
 .ListContainerDiv::-webkit-scrollbar {
     display: none; 
 }
@@ -60,7 +61,7 @@
 }
 
 .ListItemNum {
-    font-size: 50px;
+    font-size: 2.8rem;
     width: 120px;
     height: 100%;
     text-justify: center;

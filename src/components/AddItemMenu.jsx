@@ -9,7 +9,7 @@ export default function AddItemMenu({closeCallback, addItemCallback}) {
     const coverRef = useRef(null);
 
     function close(){
-        closeCallback(false)
+        closeCallback({name: "", data: {}})
     }
 
     function addItem(){
@@ -22,7 +22,10 @@ export default function AddItemMenu({closeCallback, addItemCallback}) {
         if (nameVal == "" && imgUrlVal == ""){
             return;
         }
-        addItemCallback(nameVal, subNameVal, imgUrlVal, coverVal);
+
+        initalPosVal = (initalPosVal === "" || isNaN(initalPosVal)) ? -1 : 
+        Number(initalPosVal) - 1; 
+        addItemCallback(nameVal, subNameVal, imgUrlVal, coverVal,initalPosVal);
 
         if (nameRef.current) {nameRef.current.value = '';}
         if (subNameRef.current) {subNameRef.current.value = '';}
@@ -33,18 +36,18 @@ export default function AddItemMenu({closeCallback, addItemCallback}) {
   return (
     <>
     <div className ="overlay">
-        <div className = "addItemMenu">
-            <div className ="addItemGrid">
+        <div className = "popup">
+            <div className ="popupGrid">
                 <span>Name:</span>
-                <input type="text" ref = {nameRef} className='grid-column-span-2' required />
+                <input type="text" ref = {nameRef}  required />
                 <span >Sub Name:</span>
-                <input type= "text" ref={subNameRef} className='grid-column-span-2' /> 
+                <input type= "text" ref={subNameRef}  /> 
                 <span >Initial Position:</span>
-                <input type= "text" ref = {initalPosRef} className='grid-column-span-2' /> 
+                <input type= "text" ref = {initalPosRef}  /> 
                 <span >Image URL:</span>
-                <input type="text" ref = {imageUrlRef} className='grid-column-span-2' />
+                <input type="text" ref = {imageUrlRef}  />
                 <span>Image Fit:</span>
-                <div className='grid-column-span-2'>
+                <div className='popup-center'>
                     <span>
                         <input type="radio" name="image-fit" value = "cover" ref={coverRef}   />Crop &nbsp; &nbsp;
                     </span>
@@ -52,9 +55,9 @@ export default function AddItemMenu({closeCallback, addItemCallback}) {
                         <input type="radio" name="image-fit" value="fit" defaultChecked />Fit
                     </span>
                 </div>
-                <div className='grid-column-span-3'>
-                    <button className='addMenuCloseButton' onClick={close}>Close</button>
-                    <button className='addMenuAddButton' onClick={addItem}>Add</button>
+                <div className='grid-column-span-2 popup-center'>
+                    <button className='popupCloseButton' onClick={close}>Close</button>
+                    <button className='popupAddButton' onClick={addItem}>Add</button>
                 </div>
             </div>
         </div>

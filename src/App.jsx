@@ -2,11 +2,12 @@ import { useState,useRef, useEffect } from 'react'
 import 'react-tooltip/dist/react-tooltip.css'
 import './List.css'
 import './Navbar.css'
-import './AddMenu.css'
+import './popup.css'
 import './App.css'
 import ListContainer from './components/ListContainer'
 import NavBar from './components/NavBar'
 import AddItemMenu from './components/AddItemMenu'
+import EditItemMenu from './components/EditItemMenu'
 
 const inital = [{num:1, name: "A", subname: "Fest"},
   {num:2, name: "B", subname: "Fest"},
@@ -20,6 +21,7 @@ const inital = [{num:1, name: "A", subname: "Fest"},
 function App() {
   const [itemList, setItemList] = useState([])
   const items_key_info = useRef({cur_val: 1 , freed: []})
+  const [currentOverlay, setCurrentOverlay] = useState({name: "", data: {}})
 
   function addItem(name = "", subName = "", imgUrl = "", cover = false, initalPos=-1){
     if (name == "" && imgUrl == ""){
@@ -30,16 +32,22 @@ function App() {
       let freedLength = items_key_info.current.freed.length
       let newId = freedLength > 0 ? items_key_info.current.freed[freedLength-1] :
       items_key_info.current.cur_val;
-      
-      if (typeof(initalPos)=="number" && initalPos >= 0 && intialPos <= newList.length){
+      if (typeof(initalPos)=="number" && initalPos >= 0 && initalPos < newList.length){
+        newList.splice(initalPos, 0, {num:oldList.length + 1, name: name,
+          subname: subName, ...(imgUrl && {img:imgUrl}),
+          cover: cover, id: newId});
         
+          for (let i = initalPos; i<newList.length; i++){
+            newList[i].num = (i+1)
+          }
+
+        freedLength > 0 ? items_key_info.current.freed.pop() : items_key_info.current.cur_val += 1;
       } else{
         newList.push({num:oldList.length + 1, name: name,
           subname: subName, ...(imgUrl && {img:imgUrl}),
           cover: cover, id: newId});
         
-        freedLength > 0 ? items_key_info.current.freed.pop() :
-        items_key_info.current.cur_val += 1;
+        freedLength > 0 ? items_key_info.current.freed.pop() : items_key_info.current.cur_val += 1;
       }
       return newList;
     })
@@ -60,6 +68,23 @@ function App() {
     })
   }
 
+  function editItem(name ="", subName="", imgUrl = "", cover = false, index){
+    if (name == "" && imgUrl == ""){
+      return;
+    }
+
+    setItemList(oldList => {
+      let newList = [...oldList];
+      newList[index].name = name;
+      newList[index].subname = subName;
+      
+      (imgUrl != "") ? newList[index].img = imgUrl : null;
+      newList[index].cover = cover;
+      console.log(newList)
+      return newList;
+    })
+  }
+  
   useEffect( () =>{
     items_key_info.current.cur_val = 1;
     setItemList([])
@@ -67,8 +92,6 @@ function App() {
       addItem(ob.name, ob.subname, ob.img, ob.cover)
     }
   }, [])
-
-  const [addItemMenuOn, setAddItemMenuOn] = useState(false)
 
   function SwapItems(i1, i2){
     if (i1 == undefined || i2 == undefined){
@@ -114,13 +137,17 @@ function App() {
 
   return (
     <div className='AppContainer'>
-      {addItemMenuOn && <AddItemMenu closeCallback = {setAddItemMenuOn}
+      {currentOverlay.name=="addItemMenu" && <AddItemMenu closeCallback = {setCurrentOverlay}
       addItemCallback = {addItem}> </AddItemMenu>}
       
-      <NavBar addMenuOnCallback = {setAddItemMenuOn}></NavBar>
+      {currentOverlay.name == "editMenu" && 
+      <EditItemMenu closeCallback = {setCurrentOverlay} 
+      data={currentOverlay.data} editItemCallback={editItem}/>}
+
+      <NavBar addMenuOnCallback = {setCurrentOverlay}></NavBar>
       <ListContainer itemList = {itemList} swapItemsCallback = {SwapItems} 
-      moveItemCallback = {moveItem} deleteItemCallback = {deleteItem}
-      />
+      moveItemCallback = {moveItem} deleteItemCallback = {deleteItem} 
+      setCurrentOverlayCallback = {setCurrentOverlay} />
     </div>
   )
 }  

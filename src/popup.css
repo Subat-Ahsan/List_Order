@@ -1,23 +1,31 @@
-.addItemMenu{
+.popup{
     position: absolute;
     border-radius: 20px;
     top: 25%;
     left: 50%;
     background-color: rgba(63, 69, 78);
     transform: translate(-50%, 0%);
-    padding: 20px;
+    padding: 30px;
+    overflow: auto;
+    max-height: 80vh;
 }
 
-.addItemGrid{
+.popupGrid{
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-template-rows: repeat(5, 1fr);
-    gap: 15px 0px;
-    justify-items: center;
-    font-size: xx-large;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: auto;
+    gap: 15px 30px;
+    justify-items: left;
+    font-size: x-large;
+    padding-left: 20px;
 }
 
-.addMenuCloseButton{
+.popup-center{
+    justify-self: center;
+    align-self: center;
+}
+
+.popupCloseButton{
     background-color: rgb(255, 51, 0);
     font-size: 24px;
     color: rgb(247, 247, 247);
@@ -27,12 +35,12 @@
     margin-right: 15px;
 }
 
-.addMenuCloseButton:active{
+.popupCloseButton:active{
     background-color: rgb(209, 50, 10);
     border-color: rgb(241, 197, 197);
 }
 
-.addMenuAddButton{
+.popupAddButton{
     background-color: rgb(0, 101, 216);
     font-size: 24px;
     color: rgb(247, 247, 247);
@@ -42,13 +50,17 @@
     margin-left: 15px;
 }
 
-.addMenuAddButton:active{
+.popupAddButton:active{
     background-color: rgb(2, 52, 214);
     border-color: rgb(194, 241, 255);
 }
 
-.addItemGrid input{
-    font-size: large;
+.popupGrid input[type="text"]{
+    font-size: 16px;
+    height: 30px;
+    width: 95%;
+    justify-self: center;
+    align-self: center;
 }
 .grid-column-span-2{
     grid-column: span 2;

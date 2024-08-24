@@ -5,7 +5,7 @@ import NavbarButton from './NavbarButton';
 
 export default function NavBar({addMenuOnCallback}) {
   function addMenuOn() {
-    addMenuOnCallback(true);
+    addMenuOnCallback({name: "addItemMenu", data:{}});
   }
   return (
     <div className='NavBar'>

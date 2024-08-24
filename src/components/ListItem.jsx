@@ -4,7 +4,7 @@ import { FaArrowUp, FaArrowDown, FaExchangeAlt, FaArrowRight, FaTrash, FaEdit } 
 
 
 export default function ListItem({num, img, name, subname, cover, swapItemsCallback
-    , moveItemCallback , selected, setSelectedCallback, id, deleteItemCallback
+    , moveItemCallback , selected, setSelectedCallback, id, deleteItemCallback, setCurrentOverlayCallback
 }) {
 
   let cover_style_obj = {"objectFit": (cover ? "cover" : "contain")}
@@ -22,8 +22,16 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
     }
   }
 
-  function handleDelete(){
+  function handleDelete(event){
+    if (selected.id == id) {setSelectedCallback({})}
     deleteItemCallback(num-1);
+    event.stopPropagation()
+  }
+
+  function handleEdit(event){
+    setCurrentOverlayCallback({name: "editMenu", 
+    data: {num: num, name: name, imgUrl: img, subname: subname}})
+    event.stopPropagation();
   }
 
   function selectItem(event){
@@ -38,9 +46,9 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
   return (
     <div className = {`listItemDiv ${selected.id == id ? `selected` : ""}`} onClick={selectItem}>
         <div className='ListItemImageContainer'>
-          <img src={img} style={cover_style_obj}
+          <img src={img ? img: "src/assets/fallback.jpg"} style={cover_style_obj}
           onError={(e) => {
-            e.target.src = "src/assets/fallback.jpg"
+            e.target.src = "src/assets/fallback.png"
           }  }>
           </img>
         </div>
@@ -83,7 +91,7 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
         <div className='ListItemDoubleContainer'>
             <button><FaArrowRight /></button>
             <button onClick={handleDelete}><FaTrash /></button>
-            <button><FaEdit /></button>
+            <button><FaEdit onClick = {handleEdit}/></button>
         </div>
         
     </div>
