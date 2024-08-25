@@ -35,3 +35,8 @@
 .NavBarButton:hover svg {
     color: #64b5f6;           /* Changes icon color on hover */
 }
+
+.navbarMessage{
+    margin-top: 10px;
+    text-align: center;
+}

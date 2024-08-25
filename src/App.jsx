@@ -8,6 +8,7 @@ import ListContainer from './components/ListContainer'
 import NavBar from './components/NavBar'
 import AddItemMenu from './components/AddItemMenu'
 import EditItemMenu from './components/EditItemMenu'
+import ImportListMenu from './components/ImportListMenu'
 
 const inital = [{num:1, name: "A", subname: "Fest"},
   {num:2, name: "B", subname: "Fest"},
@@ -27,6 +28,12 @@ function App() {
     if (name == "" && imgUrl == ""){
       return;
     }
+    if (typeof(name) != "string" || typeof(subName) != "string" || 
+    typeof(imgUrl) != "string" || typeof(cover) != "boolean" || 
+    typeof(initalPos) != "number"){ 
+      return;
+    }
+    
     setItemList(oldList => {
       let newList = [...oldList];
       let freedLength = items_key_info.current.freed.length
@@ -87,9 +94,20 @@ function App() {
   
   useEffect( () =>{
     items_key_info.current.cur_val = 1;
+    items_key_info.current.freed = [];
     setItemList([])
-    for (const ob of inital){
-      addItem(ob.name, ob.subname, ob.img, ob.cover)
+
+    let value = localStorage.getItem("List")
+    if (value == null){
+      return 
+    }
+    let inital = JSON.parse(value);
+    try {
+      for (const ob of inital){
+        addItem(ob.name, ob.subname, ob.img, ob.cover)
+      }}
+    catch (error){
+      return;
     }
   }, [])
 
@@ -144,7 +162,10 @@ function App() {
       <EditItemMenu closeCallback = {setCurrentOverlay} 
       data={currentOverlay.data} editItemCallback={editItem}/>}
 
-      <NavBar addMenuOnCallback = {setCurrentOverlay}></NavBar>
+      {currentOverlay.name == "importList" && 
+      <ImportListMenu closeCallback = {setCurrentOverlay} addItemCallback={addItem} />}  
+
+      <NavBar MenuOnCallback = {setCurrentOverlay} itemList={itemList}></NavBar>
       <ListContainer itemList = {itemList} swapItemsCallback = {SwapItems} 
       moveItemCallback = {moveItem} deleteItemCallback = {deleteItem} 
       setCurrentOverlayCallback = {setCurrentOverlay} />
