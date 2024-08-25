@@ -1,23 +1,16 @@
 import { useState,useRef, useEffect } from 'react'
+
 import 'react-tooltip/dist/react-tooltip.css'
-import './List.css'
-import './Navbar.css'
-import './popup.css'
-import './App.css'
+import './styles/List.css'
+import './styles/Navbar.css'
+import './styles/popup.css'
+import './styles/App.css'
+
 import ListContainer from './components/ListContainer'
 import NavBar from './components/NavBar'
 import AddItemMenu from './components/AddItemMenu'
 import EditItemMenu from './components/EditItemMenu'
 import ImportListMenu from './components/ImportListMenu'
-
-const inital = [{num:1, name: "A", subname: "Fest"},
-  {num:2, name: "B", subname: "Fest"},
-  {num:3, name: "C", subname: "E"},
-  {num:4, name: "D", subname: "D"},
-  {num:5, name: "E", subname: ""},
-  {num:6, name: "F", subname: ""},
-  {num:7, name: "G", subname: "",},
-  {num:8, name: "H", subname: "", img:""},]
 
 function App() {
   const [itemList, setItemList] = useState([])
