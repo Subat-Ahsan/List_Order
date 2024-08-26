@@ -55,17 +55,17 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
         
         <div className='ListItemNum'>{num}.</div>
         
-        <div className='ListItemDoubleContainer' style = {{flexGrow:1}}>
+        <div className='ListItemDoubleContainer' style = {{flexGrow:1, flexShrink:1}}>
             <div className='ListItemName'>{name}</div>
             <div className='listItemSubName'>{subname}</div>
         </div>
 
-        <div className='ListItemDoubleContainer closer textContainer'>
+        <div className='ListItemDoubleContainer closer textContainer removable'>
             <div>Move:</div> 
             <div>Swap:</div> 
         </div>
 
-        <div className='ListItemDoubleContainer'>
+        <div className='ListItemDoubleContainer removable'>
             <input type="number" onKeyDown={handleMoveTo} onClick={stopChildPropigation}></input>
             <input type="number" onKeyDown={handleSwapTo} onClick={stopChildPropigation}></input>
         </div>

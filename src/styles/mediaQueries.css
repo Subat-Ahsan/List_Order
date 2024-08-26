@@ -1,0 +1,67 @@
+@media (orientation: portrait) {
+    .AppContainer{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .NavBar{
+        height: clamp(30px, 9vh, 50px);
+        width: 100%;
+        background-color: #1d1d1f;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        gap: 8px;
+        border-color: #edf88c;
+        border-width: 0px 0px 4px 0px;
+        border-radius: 10px;
+        border-style: solid;
+    }
+
+    .NavBarButton{
+        border-radius: 50%;
+        height: 100%;
+        width: auto;
+        aspect-ratio: 1 / 1;
+        border-style: solid;
+        background-color: transparent;
+        border-color: rgb(226, 226, 226);
+        border-width: 3px;
+    } 
+    .ListItemDoubleContainer.removable{
+        display: none;
+    }
+}
+
+@media (max-width: 800px){
+    html {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px){
+    
+    html{
+        font-size: 10px !important;
+    }
+
+    .ListItemNum {
+        font-size: clamp(2rem,1.2vw, 5rem);
+    }
+    
+    .ListItemName {
+        font-size: 2rem;
+    }
+    
+    .listItemSubName{
+        font-size: clamp(1.4rem, 1.19vw,  2.5rem);
+        margin: 0px 0px 5px 2px;
+        height: 20px;
+        color:  rgb(108, 181, 255);
+    }
+
+}

@@ -1,12 +1,12 @@
 .NavBar{
-    width: 100px;
+    width: clamp(80px, 10vw, 120px);
     background-color: #1d1d1f;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px 10px;
     gap: 12px;
-    overflow: scroll;
+    overflow: auto;
     border-color: #edf88c;
     border-width: 0px 4px 0px 0px;
     border-radius: 15px;
@@ -19,16 +19,17 @@
 
 .NavBarButton{
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 80%;
+    aspect-ratio: 1 / 1;
     border-style: solid;
     background-color: transparent;
     border-color: rgb(226, 226, 226);
     border-width: 3px;
-    
 }
 
 .NavBarButton svg{
+    width: 80%;
+    height: 80%;
     color: #b0bec5;
 }
 

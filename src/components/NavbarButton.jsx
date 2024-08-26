@@ -9,7 +9,7 @@ export default function NavbarButton({name = "", func, tooltip="", icon: Icon}) 
       {...(tooltip && { 'data-tooltip-id': name + "-navbar-tooltip" })}
       {...(func && {"onClick": func})}
       > 
-        {Icon && <Icon size={40} />}
+        {Icon && <Icon  />}
       </button>
       {tooltip && <Tooltip id={name+"-navbar-tooltip"} place = "right" content={tooltip} delayShow={1000} /> }
     </> 

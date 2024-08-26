@@ -5,7 +5,7 @@ import './styles/List.css'
 import './styles/Navbar.css'
 import './styles/popup.css'
 import './styles/App.css'
-
+import './styles/mediaQueries.css'
 import ListContainer from './components/ListContainer'
 import NavBar from './components/NavBar'
 import AddItemMenu from './components/AddItemMenu'
