@@ -1,8 +1,9 @@
 import React, {useRef, useState} from 'react'
 
-export default function ImportListMenu({closeCallback , addItemCallback}) {
+export default function ImportListMenu({closeCallback , addItemCallback,setListCallback}) {
     const [errorMessage, setErrorMessage] = useState("");
     const fileRef = useRef(null);
+    const overwriteRef = useRef(null)
     const reader = new FileReader();
     function close(){
         reader.abort()
@@ -28,14 +29,19 @@ export default function ImportListMenu({closeCallback , addItemCallback}) {
         reader.onload = (e) =>{
             let jsonData = JSON.parse(e.target.result)
             try {
+                if (overwriteRef.current && overwriteRef.current.checked){
+                    setListCallback([])
+                }
                 for (const ob of jsonData){
                     addItemCallback(ob.name, ob.subname, ob.img, ob.cover)
                 }}
+
               catch (error){
                 console.log(error)
                 setErrorMessage("Cannot parse JSON")
                 return;
             }
+            fileRef.current.value = '';
             setErrorMessage("")
         }
         reader.onerror = (e) => {
@@ -53,7 +59,7 @@ export default function ImportListMenu({closeCallback , addItemCallback}) {
                 <span>Overwrite List:</span>
                 <div className='popup-center'>
                     <span>
-                        <input type="radio" name="override" value = "true"   />Yes &nbsp; &nbsp;
+                        <input type="radio" name="override" value = "true" ref={overwriteRef}  />Yes &nbsp; &nbsp;
                     </span>
                     < span>
                         <input type="radio" name="override" value= "false" defaultChecked />No

@@ -156,7 +156,8 @@ function App() {
       data={currentOverlay.data} editItemCallback={editItem}/>}
 
       {currentOverlay.name == "importList" && 
-      <ImportListMenu closeCallback = {setCurrentOverlay} addItemCallback={addItem} />}  
+      <ImportListMenu closeCallback = {setCurrentOverlay} addItemCallback={addItem} 
+      setListCallback = {setItemList}/>}  
 
       <NavBar MenuOnCallback = {setCurrentOverlay} itemList={itemList}></NavBar>
       <ListContainer itemList = {itemList} swapItemsCallback = {SwapItems} 
