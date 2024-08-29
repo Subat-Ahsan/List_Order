@@ -141,7 +141,7 @@ export default function NavBar({MenuOnCallback, itemList}) {
       cury += 1.099;
     }
     
-    doc.save("test.pdf"); 
+    doc.save("list.pdf"); 
   }
 
   return (

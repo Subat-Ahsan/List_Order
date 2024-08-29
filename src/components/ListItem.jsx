@@ -89,7 +89,7 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
         </div>
 
         <div className='ListItemDoubleContainer'>
-            <button><FaArrowRight /></button>
+            
             <button onClick={handleDelete}><FaTrash /></button>
             <button><FaEdit onClick = {handleEdit}/></button>
         </div>
