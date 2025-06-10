@@ -1,6 +1,8 @@
 import React, {useRef, useState} from 'react'
 
-export default function ImportListMenu({closeCallback , addItemCallback,setListCallback}) {
+export default function ImportListMenu({closeCallback , addItemCallback,setListCallback, 
+    editTitleCallback}) {
+    
     const [errorMessage, setErrorMessage] = useState("");
     const fileRef = useRef(null);
     const overwriteRef = useRef(null)
@@ -32,7 +34,9 @@ export default function ImportListMenu({closeCallback , addItemCallback,setListC
                 if (overwriteRef.current && overwriteRef.current.checked){
                     setListCallback([])
                 }
-                for (const ob of jsonData){
+                console.log(typeof editTitleCallback)
+                editTitleCallback(jsonData.title);
+                for (const ob of jsonData.listJson){
                     addItemCallback(ob.name, ob.subname, ob.img, ob.cover)
                 }}
 

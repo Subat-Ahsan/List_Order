@@ -1,9 +1,10 @@
 import React , {useState} from 'react'
 import ListItem from './ListItem'
 import ListGap from './ListGap'
+import EditableText from './EditableText'
 
 export default function ListContainer({itemList, swapItemsCallback, moveItemCallback,
-   deleteItemCallback, setCurrentOverlayCallback}) {
+   deleteItemCallback, setCurrentOverlayCallback, editItemCallback, title, editTitleCallback}) {
   
   
   const [selected, setSelected] = useState({})
@@ -11,9 +12,12 @@ export default function ListContainer({itemList, swapItemsCallback, moveItemCall
   function resetSelected(){
     setSelected({})
   }
-
+  
+  
   return (
     <div className="ListContainerDiv" onClick={resetSelected}>
+        <EditableText param={title} editParam={editTitleCallback} 
+        className={"editableText "} style = {{fontSize: "2rem"}}></EditableText>
         <ListGap selected={selected} num = {0}  moveCallback={moveItemCallback}
         key = {200000 + 0} />
         {itemList.map((item,index)=> (

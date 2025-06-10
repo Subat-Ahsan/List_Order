@@ -16,7 +16,7 @@ export default function EditItemMenu({closeCallback, data, editItemCallback,
 
         nameRef.current.value = data.name;
         subNameRef.current.value = data.subname;
-        imageUrlRef.current.val = data.imgUrl;
+        imageUrlRef.current.value = data.imgUrl;
     }, [data])
 
     function handleEdit(){

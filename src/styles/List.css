@@ -130,3 +130,25 @@
     padding: 1px;
     border-radius: 20%;
 }
+
+.editableText {
+  /* Shared styles (applies to both span and input) */
+  font-family: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  text-align: center;
+  display: inline-block;
+}
+
+.editableText[type="text"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: auto; 
+}
+
+.editableText[type="text"] {
+  border-bottom: 1px dashed #999;
+}

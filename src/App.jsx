@@ -16,6 +16,7 @@ function App() {
   const [itemList, setItemList] = useState([])
   const items_key_info = useRef({cur_val: 1 , freed: []})
   const [currentOverlay, setCurrentOverlay] = useState({name: "", data: {}})
+  const [title,setTitle] = useState("Untitled")
 
   function addItem(name = "", subName = "", imgUrl = "", cover = false, initalPos=-1){
     if (name == "" && imgUrl == ""){
@@ -75,12 +76,13 @@ function App() {
 
     setItemList(oldList => {
       let newList = [...oldList];
-      newList[index].name = name;
-      newList[index].subname = subName;
-      
-      (imgUrl != "") ? newList[index].img = imgUrl : null;
-      newList[index].cover = cover;
-      console.log(newList)
+      newList[index] = {
+        ...newList[index], 
+        name,              
+        subname: subName,  
+        ...(imgUrl && { img: imgUrl }), 
+        cover             
+      };
       return newList;
     })
   }
@@ -90,6 +92,10 @@ function App() {
     items_key_info.current.freed = [];
     setItemList([])
 
+    let localTitle = localStorage.getItem("Title")
+    if (localTitle){
+      setTitle(localTitle)
+    }
     let value = localStorage.getItem("List")
     if (value == null){
       return 
@@ -157,12 +163,14 @@ function App() {
 
       {currentOverlay.name == "importList" && 
       <ImportListMenu closeCallback = {setCurrentOverlay} addItemCallback={addItem} 
-      setListCallback = {setItemList}/>}  
+      setListCallback = {setItemList} editTitleCallback = {setTitle} />}  
 
-      <NavBar MenuOnCallback = {setCurrentOverlay} itemList={itemList}></NavBar>
+      <NavBar MenuOnCallback = {setCurrentOverlay} itemList={itemList}
+      title = {title}></NavBar>
       <ListContainer itemList = {itemList} swapItemsCallback = {SwapItems} 
       moveItemCallback = {moveItem} deleteItemCallback = {deleteItem} 
-      setCurrentOverlayCallback = {setCurrentOverlay} />
+      setCurrentOverlayCallback = {setCurrentOverlay} editItemCallback={editItem}
+      title = {title} editTitleCallback={setTitle}/>
     </div>
   )
 }  

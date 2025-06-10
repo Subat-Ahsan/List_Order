@@ -49,7 +49,7 @@ function urlToBase64(url, dimx = 760, dimy = 760) {
   });
 }
 
-export default function NavBar({MenuOnCallback, itemList}) {
+export default function NavBar({MenuOnCallback, itemList , title}) {
   const [navbarMessage, setNavBarMessage] = useState("")
   const pdfRef = useRef(null);
 
@@ -62,6 +62,7 @@ export default function NavBar({MenuOnCallback, itemList}) {
   }
 
   function saveListLocal(){
+    localStorage.setItem("Title", title);
     const listJson = [];
     
     for (let ob of itemList){
@@ -83,7 +84,8 @@ export default function NavBar({MenuOnCallback, itemList}) {
       delete newOb.id
       listJson.push(newOb)
     }
-    const jsonString = JSON.stringify(listJson, null, 2)
+    const out = {title: title, listJson: listJson}
+    const jsonString = JSON.stringify(out, null, 2)
     const blob = new Blob([jsonString], {type: 'application/json'})
     const link = document.createElement('a')
     link.download = "list.json"
