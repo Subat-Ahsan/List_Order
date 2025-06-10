@@ -20,7 +20,5 @@ The up and down buttons, or move to and swap inputs can be used to move items in
 ![Selected](images/5.png)
 
 **Save and Export**   
-The save button saves the current list to local storage, so it will be displayed when list is opened. The import from file (third) button import a list from a json file. Users can select to override current list. The export to file (forth) saves to a json file that can then be imported. The export to pdf button saves the file as a pdf (using jspdf). Some images might not work in pdf. 
-
-![Pdfs](images/4.png)
+The save button saves the current list to local storage, so it will be displayed when list is opened. The import from file button imports a list from a json file. Users can select to override current list. 
 
