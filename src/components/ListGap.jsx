@@ -1,17 +1,18 @@
 import React from 'react'
 import { FaChevronLeft} from 'react-icons/fa';
 
-export default function ListGap({selected, moveCallback, num}) {
+export default function ListGap({selected, moveCallback, num, menuCallback}) {
     function handleClick(){
         if (selected.id != undefined){
             moveCallback(selected.num-1, num);
+        } else{
+            menuCallback(num)
         }
-        
     }
     return (
-    <div className={`listGap ${selected.id != undefined ? "selected" : ""}`}>
-        {selected.id != undefined && 
-        <button onClick={handleClick} className='listGapMove'><FaChevronLeft /></button>}
-    </div>
+    <button className={`listGap ${selected.id != undefined ? "selected" : ""}`}
+        onClick = {handleClick}>
+        {!selected.id  ? "+" : "⇅"}
+    </button>
   )
 }

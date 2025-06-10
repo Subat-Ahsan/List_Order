@@ -1,12 +1,19 @@
 
-import React, {useRef} from 'react'
+import React, {useRef,useEffect} from 'react'
 
-export default function AddItemMenu({closeCallback, addItemCallback}) {
+export default function AddItemMenu({closeCallback, addItemCallback, data = {}}) {
     const nameRef = useRef(null);
     const subNameRef = useRef(null);
     const initalPosRef = useRef(null);
     const imageUrlRef = useRef(null);
     const coverRef = useRef(null);
+
+    useEffect(() => {
+        if (data.initialPos && !isNaN(data.initialPos) && initalPosRef?.current){
+            console.log(data.initialPos)
+            initalPosRef.current.value = data.initialPos;
+        }
+    }, []);
 
     function close(){
         closeCallback({name: "", data: {}})

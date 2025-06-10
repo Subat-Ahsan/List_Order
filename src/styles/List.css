@@ -8,7 +8,8 @@
     overflow: scroll;
     scrollbar-width: none;
     gap: 2px;
-    flex-grow:1
+    flex-grow:1;
+    padding-bottom: 100px;
 }
 
 .ListContainerDiv::-webkit-scrollbar {
@@ -31,26 +32,34 @@
 }
 .listGap{
     height: 1rem ;
-    min-height: 15px;
-    width: 10%;
-    font-size: 12px;
-    text-align: center;
-    margin-right: 5%;
-    align-self: flex-end;
-    position:relative;
+    min-height: 25px;
+    width: clamp(20px, 5%, 25px);
+    font-size: 30px;
+    display: flex;
+    align-items: center;    
+    justify-content: center; 
+    padding: 0% 5%;
+    margin: 5px 0px;
+    align-self: center;
+    border: rgba(190, 190, 190, 0.2) 3px solid;
+    border-radius: 50px;
+    background-color: transparent;
+    color:rgb(0, 155, 194);
+    transition: background-color 0.2s ease;
 }
 
-.listGapMove{
-    position: absolute;
-    top: -50%;
-    right: -40%;
-    width: 1.9rem;
-    aspect-ratio: 1 / 1;   
-    background-color: rgb(44, 42, 42);
-    border-radius: 50%;
-    border-style: none;
-    align-self: center;
+.listGap:hover {
+  background-color: rgba(248, 249, 250, 0.1); 
 }
+
+.listGap:active {
+  background-color: rgba(248, 249, 250, 0.3); 
+  color:rgb(0, 59, 73);
+}
+.listGap.selected{
+    font-size: 22px;
+}
+
 
 .listGap svg{
     color:aliceblue;
@@ -132,14 +141,15 @@
 }
 
 .editableText {
-  /* Shared styles (applies to both span and input) */
   font-family: inherit;
   color: inherit;
   padding: 0;
-  margin: 0;
+  margin: 10px 0px;
   line-height: 1.5;
   text-align: center;
   display: inline-block;
+  border-bottom: 1px solid #999;
+  
 }
 
 .editableText[type="text"] {

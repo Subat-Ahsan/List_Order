@@ -155,7 +155,7 @@ function App() {
   return (
     <div className='AppContainer'>
       {currentOverlay.name=="addItemMenu" && <AddItemMenu closeCallback = {setCurrentOverlay}
-      addItemCallback = {addItem}> </AddItemMenu>}
+      addItemCallback = {addItem} data={currentOverlay.data}>  </AddItemMenu>}
       
       {currentOverlay.name == "editMenu" && 
       <EditItemMenu closeCallback = {setCurrentOverlay} 
