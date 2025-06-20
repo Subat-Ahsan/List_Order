@@ -46,12 +46,7 @@ export default function ListItem({num, img, name, subname, cover, swapItemsCallb
   return (
     <div className = {`listItemDiv ${selected.id == id ? `selected` : ""}`} onClick={selectItem}>
         <div className='ListItemImageContainer'>
-          <img src={img ? img: ""} style={cover_style_obj}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "";
-          }  }>
-          </img>
+          {img ? <img src={img} style={cover_style_obj}></img> : <div></div>}
         </div>
         
         <div className='ListItemNum'>{num}.</div>
